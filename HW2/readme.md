@@ -12,7 +12,7 @@ Python Files:
 * features: provides methods to add features, log and square columns, split data into training and testing set
 * build:  provides methods for using different classifiers. currently supports knn and logistic regression.
 * pipeline: provides a class to run a dataset through different models.
-* assignment2_pipepine: instantiates a pipeline for this assignment and runs credit data through pipeline.
+* assignment2_pipeline: instantiates a pipeline for this assignment and runs credit data through pipeline.
 
 PDF:
 * Report summarizing process and findings
