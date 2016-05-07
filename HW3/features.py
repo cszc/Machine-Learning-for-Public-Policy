@@ -59,11 +59,11 @@ def split(df, depvar, test_size=0.15):
     return train_test_split(X, y, test_size=test_size)
 
 
-# To come. Code from: https://github.com/yhat/DataGotham2013/blob/master/notebooks/7%20-%20Feature%20Engineering.ipynb
-# def get_important_features(features, dependent_var):
-#     clf = RandomForestClassifier(compute_importances=True)
-#     clf.fit(df[features], df[dependent_var])
-#     importances = clf.feature_importances_
-#     sorted_idx = np.argsort(importances)
-#     best_features = features[sorted_idx][::-1]
-#     best_features
+#Code from: https://github.com/yhat/DataGotham2013/blob/master/notebooks/7%20-%20Feature%20Engineering.ipynb
+def get_important_features(features, dependent_var):
+    clf = RandomForestClassifier(compute_importances=True)
+    clf.fit(df[features], df[dependent_var])
+    importances = clf.feature_importances_
+    sorted_idx = np.argsort(importances)
+    best_features = features[sorted_idx][::-1]
+    return best_features

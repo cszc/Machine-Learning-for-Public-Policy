@@ -106,7 +106,7 @@ def summarize_data(df, html = True):
     #Make Histograms
     titles = df.columns.values
     for column_title in titles:
-        column_data = df[column_titles]:
+        column_data = df[column_title]
         make_hist(column_data, column_title)
 
 

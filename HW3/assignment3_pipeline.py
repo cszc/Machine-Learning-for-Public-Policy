@@ -21,21 +21,23 @@ my_pipeline = Pipeline(PATH, TEST)
 print('exploring')
 my_pipeline.explore()
 
-# process
-print('processing')
-my_pipeline.impute('number_of_dependents', method='mode')
-my_pipeline.impute('monthly_income', method='mean')
-
 # add features
 print('adding features')
-my_pipeline.add_col('monthly_income')
+#my_pipeline.add_col('monthly_income')
 my_pipeline.add_col('age', transform_type='squared')
 my_pipeline.create_binary('number_of_dependents')
 my_pipeline.split('serious_dlqin2yrs')
+
+# process
+print('processing')
+my_pipeline.impute('number_of_dependents', method='mode')
+my_pipeline.impute('monthly_income', method='median')
+
 my_pipeline.export_train_tocsv()
 
 # build models
+#['KNN','RF','LR','ET','AB','GB','NB','DT']
+models=['KNN','DT','NB','LR']
+#get X and y
 print('building models')
-my_pipeline.build('logistic')
-my_pipeline.build('knn')
-print(my_pipeline.models)
+my_pipeline.run_loops(models, 'testfile')

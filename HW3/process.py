@@ -22,7 +22,17 @@ def predict_gender(df):
     return df
 
 
-def fill_missing(df, col_name, method='mean', value=None):
+def get_average(df, col_name, atype='mean'):
+    if atype == 'mean':
+        average = round(df[col_name].mean())
+    elif atype == 'median':
+        average = df[col_name].median().iloc[0]
+    elif atype == 'mode':
+        average = df[col_name].mode().iloc[0]
+    return average
+
+
+def fill_missing(df, col_name, value=None, method='back'):
     '''
     Imputes missing data using specified method. Available
     methods are: mean, mode, back fill, and forward fill.
@@ -36,19 +46,12 @@ def fill_missing(df, col_name, method='mean', value=None):
         df.to_csv('imputed_data.csv')
         return df
 
-    if method == 'mean':
-        mean = round(df[col_name].mean())
-        df[col_name].fillna(value=mean, inplace=True)
-    elif method == 'mode':
-        mode = df[col_name].mode().iloc[0]
-        df[col_name].fillna(value=mode, inplace=True)
-    elif method == 'back':
+    if method == 'back':
         df.bfill()
     elif method == 'forward':
         df.ffill()
     else:
         print('Method does not exist')
-
     df.to_csv('imputed_data.csv')
     return df
 
